@@ -371,7 +371,7 @@ p3 <- ggplot(fraud1, aes(x = ClaimSize)) +
   xlab("Suma Asegurada") + 
   ylab("Densidad") + 
   xlim(0, 100000) + 
-  theme_linedraw() 
+  theme_light() 
 
 p4 <- ggplot(no_fraud, aes(x = ClaimSize)) +
   geom_histogram(aes(y = ..density..), fill = "orange3", col = "black") +
@@ -382,7 +382,7 @@ p4 <- ggplot(no_fraud, aes(x = ClaimSize)) +
   xlab("Suma Asegurada") + 
   ylab("Densidad") + 
   xlim(0, 100000) +
-  theme_linedraw() 
+  theme_light() 
 
 grid.arrange(p3, p4)
 
@@ -393,20 +393,20 @@ p5 <- ggplot(fraud1, aes(x = VehiclePrice)) +
   ggtitle("Frecuencia Costo del Auto de Fraude") + 
   xlab("Costo del Auto") + 
   ylab("Frecuencia") + 
-  theme_minimal() 
+  theme_light() 
 
 p6 <- ggplot(no_fraud, aes(x = VehiclePrice)) +
   geom_bar(fill = "deepskyblue4", col = "black") +
   ggtitle("Frecuencia Costo del Auto de Fraude") + 
   xlab("Costo del Auto") + 
   ylab("Frecuencia") + 
-  theme_minimal() 
+  theme_light() 
 
 grid.arrange(p5, p6)
 
 # - BoxPlot Sexo y Monto de Reclamación----
 
-ggplot(graficas, aes(x = Sex , y = ClaimSize, fill = Fraud_trainY)) + geom_boxplot() +
+ggplot(graficas, aes(x = as.factor(Sex) , y = ClaimSize, fill = Fraud_trainY)) + geom_boxplot() +
   ggtitle("Boxplots") +
   scale_fill_discrete(name = "Fraude", labels = c("No", "Si")) +
   xlab("Sexo") +
@@ -440,7 +440,8 @@ ggplot(graficas, aes(x = as.factor(AgeOfVehicle) , y = ClaimSize, fill = Fraud_t
 # - Eliminar la variable respuesta del data frame de entrenamiento----
 #dropfraud <- names(SFraudTr) %in% c("FraudFound_P")
 
-levels(graficas$Fraud_trainY) <- c("No", "Yes")
+#levels(graficas$Fraud_trainY) <- c("No", "Yes")
+
 # - Entrenamiento del modelo C5.0----
 
 tiempoI <- Sys.time()
@@ -547,6 +548,47 @@ resamp$metrics
 xyplot(resamp, what = "scatter")
 dotplot(resamp)
 bwplot(resamp)
+
+# Para evaluar las posibles diferencias entre los modelos utilizaMOS la función diff
+modelDifferences = diff(resamp)
+summary(modelDifferences)
+
+modelDifferences$statistics$ROC
+
+########################################################################-
+# Dado que el C5.0 fué el mejor modelo bajo el criterio del áre bajo   
+# la curva ROC, utilizamos la AUC para ver qué tan bien predice
+########################################################################-
+
+# - Importancia de variables del modelo final ----
+
+ImportanciaVars = varImp(bc.C5.0)
+ImportanciaVars
+plot(ImportanciaVars, 
+     main = paste("Importancia de Factores C5.0 Final",Sys.Date()))
+
+# - Curva ROC del modelo ----
+
+prediccion_C5Rules = predict(bc.C5.0, Fraud_testX, type="prob")
+
+roc_obj_C5Rules <- roc(Fraud_testY, prediccion_C5Rules$Si)
+
+roc_obj_C5Rules$auc
+
+# - Plot the five ROC curves ----
+
+Sens_C50 = roc_obj_C5Rules$sensitivities
+Spec_C50 = roc_obj_C5Rules$specificities
+
+par(mfrow=c(1,1))
+plot(x=(1-Spec_C50), y=Sens_C50, type="l", lty="solid", col="black", 
+     main=paste("ROC for models: C5.0 "), xlab="1-Specificity",
+     ylab = "Sensitivity")
+legend(x=.46, y=.5, paste("C5.0 Final, AUC = ", 
+                          round(roc_obj_C5Rules$auc,digits=2)), 
+       text.col = "black", bty="n")
+
+
 
 
 
