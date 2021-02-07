@@ -2,7 +2,7 @@
 Proyecto de la fase dos de BEDU - Data Science
 
 ## Objetivo del Proyecto
-Se busca investigar y crear diferentes de aprendizaje máquina modelos para predecir fraudes en automóviles y así poder prevenirlos y lograr una reducción en los costos de operación de las aseguradoras, mirsma que debería de reflejarse en una reducción de las primas, beneficiando así a los asegurados.
+Se busca investigar y crear diferentes modelos de aprendizaje máquina para predecir fraudes en automóviles y así poder prevenirlos y lograr una reducción en los costos de operación de las aseguradoras, mirsma que debería de reflejarse en una reducción de las primas, beneficiando así a los asegurados.
 
 El fraude es un problema en la actualidad. Ha mantenido su ritmo de crecimiento constante en los últimos años y a pesar de todas las tecnologías existentes, no se ha podido disminuir su crecimiento y se hace cada vez más difícil su detección, pues los esquemas utilizados por los defraudadores siguen evolucionando.
 
