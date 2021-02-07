@@ -10,7 +10,7 @@ El fraude es un problema en la actualidad. Ha mantenido su ritmo de crecimiento 
 En este proyecto, se utilizaron diferentes métodos de clasificación:
 - MODELO C5.0: Este método es uno de los más utilizados en el ámbito de los árboles de clasificación. Este algoritmo crea modelos de árbol de clasificación, permitiendo sólo variables de salida categórica. Las variables de entrada pueden ser de naturaleza continua o categórica.
 - REGRESIÓN LOGÍSTICA: Sabemos que, en este caso, la regresión logística tiene las ventajas de tiene bajo consumo de recursos de un ordenador, tiene una fácil interpretación y una buena eficiencia y simplicidad.
-- Neural Networks Model: se refiere a un conjunto de redes neuronales que tienen como objetivo resolver problemas difíciles mediante algoritmos convencionales. Dentro de dicho conjunto, en cada una de ellas podemos distinguir una entrada de señal, un nodo y una salida o respuesta hacia otra neurona artificial.
+- NEURAL NETWORKS MODEL: se refiere a un conjunto de redes neuronales que tienen como objetivo resolver problemas difíciles mediante algoritmos convencionales. Dentro de dicho conjunto, en cada una de ellas podemos distinguir una entrada de señal, un nodo y una salida o respuesta hacia otra neurona artificial.
 
 ## Notas del código
 En la carpeta "Codigo" se encuentran el archivo principal "main.R" que se utilizó para la creación del proyecto, sin embargo, anteriormente se realizaron pruebas y código variado que nos llevó al principal, lo cual, se presenta en la carpeta "Testing". 
