@@ -235,7 +235,7 @@ if(length(MissingNames > 0))  Fraud_trainX = Fraud_trainX[,-..MissingNames]
 # - Lista de predictores de caracter----
 ClassVariables <- names(which(sapply(Fraud_trainX, class) == 
                               c("factor")))
-lchr = length(ChrVariables)
+lchr = length(ClassVariables)
 ClassVariables
 
 # - Para los predictores de clase retener solo aquellos que no tienen NA's----
@@ -253,11 +253,6 @@ if (lchr > 0) {
   if(length(PctPerdidos) == lchr) lchr = 0
   sink()
 }
-
-# - Cambiar de clase de caracter a factor----
-#Fraud_trainF <- setNames(data.frame(lapply(Fraud_trainC, as.factor)), 
-#                        colnames(Fraud_trainC))
-#rm(Fraud_trainXC)
 
 # - Separar predictores enteros en Fraud_trainXI----
 IntegerVariables <- names(which(sapply(Fraud_trainX, class) == c("integer")))
@@ -324,12 +319,18 @@ ctrl <- trainControl(method = "repeatedcv",index = indx,
 
 # GRÁFICOS----
 ################################################-
-# - Histograma de la edad ----
+# - Desbalanceo de datos ----
+
 graficas <- cbind(Fraud_trainX, Fraud_trainY)
 tail(graficas)
 
 fraud1 <- graficas %>% filter(Fraud_trainY == "Si")
 no_fraud <- graficas %>% filter(Fraud_trainY == "No")
+
+ggplot(graficas,aes(Fraud_trainY))+geom_bar(fill=c("blue","red")) + scale_x_discrete(name = "Fraude",labels = c("No", "Si"))
+
+
+# - Histograma de la edad ----
 
 
 m1 <- round(mean(na.omit(fraud1$Age)), 2)
@@ -494,44 +495,6 @@ print(paste("Tiempo para entrenar RN nnet: ",
             difftime(tiempoF,tiempoI,units = "mins"),"minutos"))
 saveRDS(nnetFit, file = "nnetFit.rds")
 plot(nnetFit)
-
-# - Entrenamiento del modelo Support Vector Machine----
-sigmaRangeFull <- sigest(as.matrix(Fraud_trainXN))
-sigmaRangeFull
-
-#svmRGrid <- expand.grid(sigma =  as.vector(sigmaRangeFull),
-#                        C = 2^(-4:4))
-
-# Setear a NA los valores Inf
-#
-is.na(Fraud_trainX) <- sapply(Fraud_trainX, is.infinite)
-colnames(Fraud_trainX)[unique(which(is.na(Fraud_trainX), arr.ind = TRUE)[,2])]
-# 
-# Parece que "Age", "DriverRating", "DayOfWeekClaimed" y "MonthClaimed"
-# tienen valores perdidos después de convertir Inf a NA#
-#
-# Números de observaciones (fila) con NA's
-#
-has_na <- which(!complete.cases(Fraud_trainX))
-Fraud_trainX = Fraud_trainX[-has_na,]
-Fraud_trainY = Fraud_trainY[-has_na]
-
-tiempoI = Sys.time()
-svmRFit <- train(x = Fraud_trainX, 
-                 y = Fraud_trainY, 
-                 method = "svmRadial",
-                 metric = "ROC",
-                 preProc = c("center", "scale"),
-                 #tuneGrid = svmRGrid,
-                 tunelength = 15,
-                 trControl = ctrl)
-tiempoF = Sys.time()
-print(paste("Tiempo para entrenar SVM Base Radial: ",
-            difftime(tiempoF,tiempoI,units = "mins")))
-saveRDS(svmRFit, file = "SvmRFit.rds")
-svmRFit
-plot(svmRFit, main="SVM con Kernel RBF", 
-     scales = list(x = list(log = 2))) 
 
 # - Comparación de Modelos----
 ################################################-
