@@ -588,9 +588,9 @@ legend(x=.46, y=.5, paste("C5.0 Final, AUC = ",
                           round(roc_obj_C5Rules$auc,digits=2)), 
        text.col = "black", bty="n")
 
+# - Matriz de confusión ----
 
-
-
-
-
+data_predicted <- predict(bc.C5.0, Fraud_testX)
+head(Fraud_testY)
+confusionMatrix(data = data_predicted, reference = Fraud_testY, positive = "Si")
 

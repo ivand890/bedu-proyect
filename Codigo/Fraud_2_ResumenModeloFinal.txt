@@ -1,0 +1,70 @@
+
+Porcentaje de observaciones perdidas por variable, casos con %> 0%:
+DayOfWeekClaimed     MonthClaimed              Age     DriverRating 
+    0.0001729206     0.0001729206     0.0221338406     0.0005187619 
+
+Variables que se eliminan por tener más de 10% de valores perdidos:
+character(0)
+
+
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
+
+Porcentaje de observaciones perdidas por variable, casos con %> 0%:
+         Age DriverRating 
+0.0200587930 0.0006916825 
+
+Variables que se eliminan por tener más de 10% de valores perdidos:
+character(0)
+
+
+Se eliminan los siguientes predictores de caracter con al menos
+un valor perdido
+Make AccidentArea Sex MaritalStatus Fault PolicyType VehicleCategory Days_Policy_Accident Days_Policy_Claim PastNumberOfClaims AgeOfVehicle AgeOfPolicyHolder PoliceReportFiled WitnessPresent AgentType NumberOfSuppliments AddressChange_Claim NumberOfCars BasePolicy
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
+
+Se eliminan los siguientes predictores de caracter con al menos
+un valor perdido
+Make AccidentArea Sex MaritalStatus Fault PolicyType VehicleCategory Days_Policy_Accident Days_Policy_Claim PastNumberOfClaims AgeOfVehicle AgeOfPolicyHolder PoliceReportFiled WitnessPresent AgentType NumberOfSuppliments AddressChange_Claim NumberOfCars BasePolicy
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
+
+Porcentaje de observaciones perdidas por variable, casos con %> 0%:
+         Age DriverRating 
+0.0212692374 0.0006916825 
+
+Variables que se eliminan por tener más de 10% de valores perdidos:
+character(0)
+
+
+Se eliminan los siguientes predictores de caracter con al menos
+un valor perdido
+Make AccidentArea Sex MaritalStatus Fault PolicyType VehicleCategory Days_Policy_Accident Days_Policy_Claim PastNumberOfClaims AgeOfVehicle AgeOfPolicyHolder PoliceReportFiled WitnessPresent AgentType NumberOfSuppliments AddressChange_Claim NumberOfCars BasePolicy
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
+
+Porcentaje de observaciones perdidas por variable, casos con %> 0%:
+DayOfWeekClaimed     MonthClaimed              Age     DriverRating 
+    0.0001729206     0.0001729206     0.0216150787     0.0003458413 
+
+Variables que se eliminan por tener más de 10% de valores perdidos:
+character(0)
+
+
+Se eliminan los siguientes predictores de caracter con al menos
+un valor perdido
+Make AccidentArea Sex MaritalStatus Fault PolicyType VehicleCategory Days_Policy_Accident Days_Policy_Claim PastNumberOfClaims AgeOfVehicle AgeOfPolicyHolder PoliceReportFiled WitnessPresent AgentType NumberOfSuppliments AddressChange_Claim NumberOfCars BasePolicy
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
+
+Porcentaje de observaciones perdidas por variable, casos con %> 0%:
+DayOfWeekClaimed     MonthClaimed              Age     DriverRating 
+    0.0001729206     0.0001729206     0.0228255231     0.0006916825 
+
+Variables que se eliminan por tener más de 10% de valores perdidos:
+character(0)
+
+
+Se eliminan los siguientes predictores por estar altamente
+correlacionados
