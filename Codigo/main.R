@@ -32,7 +32,7 @@ library(nnet)
 # LECTURA Y RECODIFICACIÓN DE VARIABLES ----
 ################################################-
 # - Lectura de datos ----
-fraud = as.data.frame(read_xlsx("Dataset.xlsx"))
+fraud = as.data.frame(read.csv("Dataset.csv"))
 head(fraud)
 
 # - Principales datos----
